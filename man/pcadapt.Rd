@@ -52,9 +52,13 @@ pcadapt(
 )
 }
 \arguments{
-\item{input}{The output of function \code{read.pcadapt}.}
+\item{input}{The output of function \code{read.pcadapt}. Pool-seq input must
+be a numeric matrix with pools in rows, markers in columns, allele
+frequencies between zero and one, and \code{NA} for missing frequencies.}
 
-\item{K}{an integer specifying the number of principal components to retain.}
+\item{K}{A positive integer specifying the number of principal components to
+retain. For Pool-seq data, it cannot exceed the smaller of the number of
+pools minus one and the number of markers retained after MAF filtering.}
 
 \item{method}{a character string specifying the method to be used to compute
 the p-values. Two statistics are currently available, \code{"mahalanobis"},
@@ -64,13 +68,15 @@ and \code{"componentwise"}.}
 computed. Default is \code{0.05}.}
 
 \item{ploidy}{Number of trials, parameter of the binomial distribution. 
-Default is 2, which corresponds to diploidy, such as for the human genome.}
+Default is 2, which corresponds to diploidy, such as for the human genome.
+This argument is not used for Pool-seq input and must then be \code{NULL}.}
 
 \item{LD.clumping}{Default is \code{NULL} and doesn't use any SNP thinning.
 If you want to use SNP thinning, provide a named list with parameters 
 \code{$size} and \code{$thr} which corresponds respectively to the window 
 radius and the squared correlation threshold. A good default value would 
-be \code{list(size = 500, thr = 0.1)}.}
+be \code{list(size = 500, thr = 0.1)}. LD clumping is not implemented for
+Pool-seq input.}
 
 \item{pca.only}{a logical value indicating whether PCA results should be 
 returned (before computing any statistic).}
