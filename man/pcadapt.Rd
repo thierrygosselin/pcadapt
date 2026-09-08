@@ -65,9 +65,9 @@ and \code{"componentwise"}.}
 \item{min.maf}{Threshold of minor allele frequencies above which p-values are 
 computed. Default is \code{0.05}.}
 
-\item{ploidy}{For genotype input, a positive integer giving the number of
-chromosome copies. Default is 2, which corresponds to diploidy, such as
-for the human genome. This argument is not used for Pool-seq input.}
+\item{ploidy}{For genotype input, either \code{1} for haploid dosage data or
+\code{2} for diploid dosage data. Default is \code{2}. Polyploid genotype
+dosages are not supported. This argument is not used for Pool-seq input.}
 
 \item{LD.clumping}{Default is \code{NULL} and doesn't use any SNP thinning.
 If you want to use SNP thinning, provide a named list with parameters 

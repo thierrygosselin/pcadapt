@@ -50,9 +50,9 @@ NULL
 #'   be \code{list(size = 500, thr = 0.1)}.
 #' @param pca.only a logical value indicating whether PCA results should be 
 #'   returned (before computing any statistic).
-#' @param ploidy For genotype input, a positive integer giving the number of
-#'   chromosome copies. Default is 2, which corresponds to diploidy, such as
-#'   for the human genome. This argument is not used for Pool-seq input.
+#' @param ploidy For genotype input, either code{1} for haploid dosage data or
+#'   code{2} for diploid dosage data. Default is code{2}. Polyploid genotype
+#'   dosages are not supported. This argument is not used for Pool-seq input.
 #' @param tol Convergence criterion of \code{RSpectra::svds()}. 
 #'   Default is \code{1e-4}.
 #' 
@@ -244,8 +244,8 @@ pcadapt0 <- function(input, K, method, min.maf, ploidy, LD.clumping, pca.only, t
   }
 
   if (!is.numeric(ploidy) || length(ploidy) != 1L || is.na(ploidy) ||
-      !is.finite(ploidy) || ploidy <= 0 || ploidy != floor(ploidy)) {
-    stop("ploidy must be one positive integer.", call. = FALSE)
+      !is.finite(ploidy) || !(ploidy %in% c(1, 2))) {
+    stop("ploidy must be either 1 (haploid) or 2 (diploid).", call. = FALSE)
   }
 
   if (!is.logical(pca.only) || length(pca.only) != 1L || is.na(pca.only)) {

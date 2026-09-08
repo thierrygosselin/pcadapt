@@ -18,9 +18,11 @@ expect_error(pcadapt(geno, K = 0), "one positive integer", fixed = TRUE)
 expect_error(pcadapt(geno, K = 2, min.maf = NA_real_),
              "one finite number", fixed = TRUE)
 expect_error(pcadapt(geno, K = 2, ploidy = 0),
-             "one positive integer", fixed = TRUE)
+             "either 1 (haploid) or 2 (diploid)", fixed = TRUE)
 expect_error(pcadapt(geno, K = 2, ploidy = 1.5),
-             "one positive integer", fixed = TRUE)
+             "either 1 (haploid) or 2 (diploid)", fixed = TRUE)
+expect_error(pcadapt(geno, K = 2, ploidy = 3),
+             "either 1 (haploid) or 2 (diploid)", fixed = TRUE)
 expect_error(pcadapt(geno, K = 2, pca.only = NA),
              "TRUE or FALSE", fixed = TRUE)
 expect_error(pcadapt(geno, K = 2, tol = 0),
