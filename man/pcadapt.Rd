@@ -78,11 +78,13 @@ radius and the squared correlation threshold. A good default value would
 be \code{list(size = 500, thr = 0.1)}. LD clumping is not implemented for
 Pool-seq input.}
 
-\item{pca.only}{a logical value indicating whether PCA results should be 
-returned (before computing any statistic).}
+\item{pca.only}{a logical value indicating whether PCA results should be
+returned before computing any statistic. This option is not implemented
+for Pool-seq input and must then be \code{FALSE}.}
 
-\item{tol}{Convergence criterion of \code{RSpectra::svds()}. 
-Default is \code{1e-4}.}
+\item{tol}{Convergence criterion of \code{RSpectra::svds()} for genotype
+input. Pool-seq analysis currently uses \code{base::svd()}, so this
+argument must not be supplied for Pool-seq input. Default is \code{1e-4}.}
 }
 \value{
 The returned value is an object of class \code{pcadapt}.

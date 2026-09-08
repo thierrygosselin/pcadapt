@@ -51,6 +51,10 @@ expect_error(pcadapt(pool, K = 2, LD.clumping = list(size = 10, thr = 0.2)),
              "not implemented", fixed = TRUE)
 expect_error(pcadapt(pool, K = 2, pca.only = NA),
              "TRUE or FALSE", fixed = TRUE)
+expect_error(pcadapt(pool, K = 2, pca.only = TRUE),
+             "not implemented", fixed = TRUE)
+expect_error(pcadapt(pool, K = 2, tol = 1e-4),
+             "not used for Pool-seq", fixed = TRUE)
 
 # Rank is limited by centring and the retained marker count.
 three.pools <- pool[1:3, , drop = FALSE]
